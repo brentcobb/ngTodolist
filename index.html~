@@ -1,0 +1,76 @@
+<!doctype html>
+
+		<!-- *ng-app		
+		ng-app is an Angular JS Directive
+		-->
+
+<html ng-app="Todo">
+<head>
+	<title>TODO POUCH</title>
+	<link rel="stylesheet" href="components/bootstrap/css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<h1>TODO POUCH</h1>
+		<ng-view></ng-view>
+	</div>
+
+		<!-- How many completed todos and total todos
+
+				The ng-bind Directive calls $scope.remaining to see
+					the number of remaining todos that are not marked completed.
+				Then using ng-bind Directive on $scope.todos.length to see
+					the total count of todo items.
+
+		-->
+
+	<span>{{remaining()}} of {{todos.length}} remaining</span>
+
+		<!-- The Remover
+
+				This line allows the user to remove all done tasks from the list.
+				There is an anchor element and ng-click attribute to map
+					the anchor click even to the $scope.removeDone function
+		-->
+
+	[<a ng-href="" ng-click="removeDone()">Remove done</a>]
+
+	<!--  Unorder list of todo tasks
+
+				This is a standard unorder list, it will give each line
+				a check box with an attribute ng-model assigned to
+				$scope.todo.done, this maps the input ng-click attribute to
+				$scope.updateTodo(todo).
+				If todo.done === true, the ng-class directive will add the done 				class tot he span element.
+				ng-bind durective shows the todo task.
+	--> 
+
+	<ul class="unstyled">
+		<li ng-repeat="todo in todos">
+			<input type="checkbox" ng-model="todo.done">
+			<span ng-class="{{done: todo.done">{{todo.text}}</span>
+		</li>
+	</ul>
+
+	<!-- The Form
+	
+				Adding a form with the ng-submit directive, it is assigned to
+				$scope.addTodo()
+				The input element ng-model is assigned to $scope.todoText
+	-->
+
+	<form ng-submit="addTodo()">
+		<input type="text" ng-model="todoText" size="30"
+			placeholder="add new todohere">
+		<input class="btn btn-primary" type="submit" value="add">
+	</form>
+
+		<!-- *Scripts		
+				These script files load my angular,jquery, and pouchdb files
+		-->
+
+	<script src="components/jquery/jquery.js"></script>
+	<script src="components/angular/angular.js"></script>
+	<script src="components/pouchdb-nightly.min/index.js"></script>
+</body>
+</html>

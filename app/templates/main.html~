@@ -1,0 +1,21 @@
+<h1>Todo Pouch</h1>
+
+		<!-- todos array
+				Simply initializing an empty $scope.todos array
+		-->
+
+$scope.todos = [];
+
+		<!--  addTodo function
+				Each new todo needs 3 parameters (_id, text, done)
+		-->
+
+$scope.addTodo = function () {
+	var newTodo = {
+		_id: Math.uuid(),
+		text: @scope.todoText,
+		done: false
+	};
+	$scope.todos.push(newTodo)
+	$scope.todoText = '';
+};
