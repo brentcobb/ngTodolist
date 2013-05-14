@@ -1,7 +1,3 @@
-//This is the main Gruntfile
-//Not sure exactly what it does yet, more to come
-
-
 var www = __dirname;
 
 var appFiles = [
@@ -9,29 +5,29 @@ www + '/app/app.js',
 www + '/app/services/*.js',
 www + '/app/filters/*.js',
 www + '/app/directives/*.js',
-www + '/app/controllers/*.js',
+www + '/app/controllers/*.js'
 ];
 
 module.exports = function(grunt) {
 	grunt.initConfig({
 		jshint: {
-			files:appFiles
+			files: appFiles
 		},
 		concat: {
 			app: {
 				src: appFiles,
-			dest: www +'ng-app.js'
+			dest: www + '/ng-app.js'
 			}
 		},
 		uglify: {
 			grxnet: {
-				src: [ www + 'ng-app.js'],
-				dest: www + 'ng-app.min.js'
+				src: [ www + '/ng-app.js'],
+				dest: www + '/ng-app.min.js'
 			}
 		},
 		watch: {
 			scripts: {
-				files: www + 'app/**/*.js',
+				files: www + '/app/**/*.js',
 				tasks: ['jshint','concat'],
 				options: {
 					interrupt: true

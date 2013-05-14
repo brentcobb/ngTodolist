@@ -1,18 +1,17 @@
-		//In this file I am creating the config section.
-		//
-		//It will inject two services ($routeprovider, $locationProvider
-		//$routeProvider gives us the ability to do routing
-		//$locationProvider gives us html5 push updates
-
+		//	** $routeProvider and $locationProvider **
+		//		
+		//	$routeProvider allows us to do routing
+		//	$locationProvider gives us html5 push updates
 
 angular.module('Todo', [])
 	.config(function($routeProvider, $locationProvider) {
-		'use strict';
-
+		'uses strict';
+		
 		$routeProvider
 			.when('/', {
 				controller: 'MainCtrl',
-				templateUrl: 'app/templates/main.html'
+				templateUrl: '/app/templates/main.html'
 			});
-		$locationProvider.html5Mode(true);
+		$locationProvider.html5mode(true);
 	});
+

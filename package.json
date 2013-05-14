@@ -1,0 +1,22 @@
+{
+  "name": "todo-pouch",
+  "version": "0.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brentcobb/ngTodolist.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "gitHead": "b61f8d81fb389c3d072cf50cfb73a99769086f99",
+  "dependencies": {
+    "grunt-contrib-watch": "~0.4.3",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-concat": "~0.3.0"
+  }
+}
