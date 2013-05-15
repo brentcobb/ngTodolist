@@ -1,2 +1,2 @@
 angular.module('Todo')
-	.value('$pouch', Pouch('idb://todos'));
+  .value('$pouch', Pouch('idb://todos'));

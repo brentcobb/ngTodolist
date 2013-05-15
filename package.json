@@ -12,11 +12,13 @@
   },
   "author": "",
   "license": "BSD",
-  "gitHead": "b61f8d81fb389c3d072cf50cfb73a99769086f99",
-  "dependencies": {
+  "gitHead": "2173396030b8fe9f300094a3e273a5c58c55f2af",
+  "dependencies": {},
+  "devDependencies": {
     "grunt-contrib-watch": "~0.4.3",
     "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-concat": "~0.3.0"
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jshint": "~0.4.3"
   }
 }

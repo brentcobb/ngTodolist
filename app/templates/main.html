@@ -1,1 +1,17 @@
 <h1>Todo Pouch</h1>
+
+<span>{{remaining()}} of {{todos.length}} remaining</span>
+
+[<a ng-href="" ng-click="removeDone()">Remove done</a>]
+
+<ul class'unstyled'>
+  <li ng-repeat="todo in todos">
+    <input type="checkbox" ng-model="todo.done">
+    <span ng-class="{done: todo.done}">{{todo.text}}</span>
+  </li>
+</ul>
+
+<form ng-submit="addTodo()">
+  <input type="text" ng-model="todoText" size="30" placeholder="Add your new tasks here">
+  <input class="btn btn-primary" type="submit" value="add">
+</form>
