@@ -1,5 +1,5 @@
 angular.module('Todo', [])
-  .config(function($routeProvider, $locationProvider) {
+  .config(function($routeProvider) {
     'use strict';
 
     $routeProvider
@@ -7,14 +7,14 @@ angular.module('Todo', [])
         controller: 'MainCtrl',
         templateUrl: '/app/templates/main.html'
       });
-    $locationProvider.html5mode(true);
+    
   });
 angular.module('Todo')
   .value('$pouch', Pouch('idb://todos'));
 angular.module('Todo')
   .controller('MainCtrl', function($scope, $pouch) {
 
-    $scope.todos = {};
+    $scope.todos = [];
 
     $scope.addTodo = function() {
       var newTodo = {

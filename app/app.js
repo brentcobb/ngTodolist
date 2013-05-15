@@ -1,5 +1,5 @@
 angular.module('Todo', [])
-  .config(function($routeProvider, $locationProvider) {
+  .config(function($routeProvider) {
     'use strict';
 
     $routeProvider
@@ -7,5 +7,5 @@ angular.module('Todo', [])
         controller: 'MainCtrl',
         templateUrl: '/app/templates/main.html'
       });
-    $locationProvider.html5mode(true);
+    
   });

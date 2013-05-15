@@ -1,7 +1,7 @@
 angular.module('Todo')
   .controller('MainCtrl', function($scope, $pouch) {
 
-    $scope.todos = {};
+    $scope.todos = [];
 
     $scope.addTodo = function() {
       var newTodo = {
