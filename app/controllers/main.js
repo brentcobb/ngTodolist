@@ -83,7 +83,7 @@ angular.module('Todo').controller('MainCtrl', function($scope) {
     $pouch.remove(todo);
   };
 
-//////////////////    Count's Remaining  /////////////////////////////////////
+//////////////////    Counts Remaining  /////////////////////////////////////
 //
 // This function figures out how many todos are remaining.  It does this by first
 // setting the count to 0, then going through each todo and counting them and
