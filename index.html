@@ -1,29 +1,22 @@
 <!doctype html>
 <html ng-app="Todo">
 <head>
-
-  <title>TODO POUCH</title>
-  <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.css">
-
+  <title>To Do Tracker</title>
+  <link rel='stylesheet' href='/components/bootstrap/css/bootstrap.css'>
 </head>
 <body>
+  <div class='container'>
+    
+    <h1> To Do List </h1>
+    
+    <ng-view>
 
-  <div class="container">
-    <h1>TODO POUCH</h1>
+    </ng-view>
 
-    <ng-view></ng-view>
   </div>
-
-
-  <script src="/components/jquery/jquery.js"></script>
-  <script src="/components/angular/angular.js"></script>
-  <script src="/components/pouchdb-nightly.min/index.js"></script>
-  <script src="/ng-app.js"></script>
-  <!--
-  <script src="/app/app.js"></script>
-  <script src="/app/services/pouch.js"></script>
-  <script src="/app/controlers.main.js"></script>
-  -->
-
+  <script src='/components/jquery/jquery.js'></script>
+  <script src='/components/angular/angular.js'></script>
+  <script src='/components/pouchdb-nightly.min/index.js'></script>
+  <script src='ng-app.js'></script>
 </body>
 </html>
