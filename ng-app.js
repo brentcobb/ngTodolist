@@ -1,12 +1,9 @@
 angular.module('Todo', [])
-  .config(function($routeProvider /*, $locationProvider */) {
+  .config(function($routeProvider /*$locationProvider*/ ) {
     'use strict'; 
 
     $routeProvider
-      .when('/', {
-        controller: 'MainCtrl',
-        templateUrl: 'app/templates/main.html'
-      });
+      .when('/', {controller: 'MainCtrl',templateUrl: '/app/templates/main.html'});
     //$locationProvider.html5mode(true);
 });
 /////////////// The Pouch Service /////////////////////////////////////////////
@@ -14,8 +11,8 @@ angular.module('Todo', [])
 // Here is where the pouch service will be stored
 ///////////////////////////////////////////////////////////////////////////////
 
-/*angular.module('Todo')
-  .value('$pouch', Pouch('inb://todos'));*/
+angular.module('Todo')
+  .value('$pouch', Pouch('idb://todos'));
 //////////////////    Main Controller  /////////////////////////////////////////
 //
 // This is the main controller
@@ -23,13 +20,13 @@ angular.module('Todo', [])
 
 
 
-angular.module('Todo').controller('MainCtrl', function($scope) {
-  'use strict';
+angular.module('Todo').controller('MainCtrl', function($scope, $pouch) {
 
 
-  /////////////////////////////////////
-  // Initialize the $scope.todos array
-  /////////////////////////////////////
+
+/////////////////////////////////////
+// Initialize the $scope.todos array
+/////////////////////////////////////
 
   $scope.todos = [];
 
@@ -37,22 +34,22 @@ angular.module('Todo').controller('MainCtrl', function($scope) {
 //
 //  Here is where saved todo lists will be loaded back into view
 ///////////////////////////////////////////////////////////////////////////////
-/*
-  $pouch.allDocs({include_docs: true}, function(err, reponce) {
+
+  $pouch.allDocs({include_docs: true}, function(err, response) {
     $scope.$apply(function() {
       response.rows.forEach(function(row) {
         $scope.todos.push(row.doc);
       });
     });
-  });*/
+  });
 
-  ////////////////    New Todo Creation /////////////////////////////////////////
-  //
-  //  The todo function, this will be used to add new todos.  Each newTodo is given
-  // a uuid, the text of it is set to $scope.todoText, and it is set to not done.
-  //  Then pouch comes into play.  It saves newTodo's and gives them and id and rev
-  // use in the database.
-  ///////////////////////////////////////////////////////////////////////////////
+////////////////    New Todo Creation /////////////////////////////////////////
+//
+//  The todo function, this will be used to add new todos.  Each newTodo is given
+// a uuid, the text of it is set to $scope.todoText, and it is set to not done.
+//  Then pouch comes into play.  It saves newTodo's and gives them and id and rev
+// use in the database.
+///////////////////////////////////////////////////////////////////////////////
 
   $scope.addTodo = function() {
     var newTodo = {
@@ -61,23 +58,23 @@ angular.module('Todo').controller('MainCtrl', function($scope) {
       done: false
     };
 
-    $scope.todo.push(newTodo);
+    $scope.todos.push(newTodo);
 
     $scope.todoText = '';
-/*    $pouch.post(newTodo, function(err, res) {
-      if (err) {console.log(err); }
+    $pouch.post(newTodo, function(err, res) {
+      if (err) { console.log(err); }
       newTodo._id = res.id;
       newTodo._rev = res.rev;
-    }); */
+    });
   };
 
-  /////////////////    The Remover ///////////////////////////////////////////
-  //
-  // This function removes completed todos.  First it backs up the array, 
-  // then it resets it to an empty array, then it loops through all old todos
-  // then it checks to see if each todo is done, if so it is added to the array
-  // if not it is removed.  Basically it removes items marked as done.
-  ////////////////////////////////////////////////////////////////////////////
+/////////////////    The Remover ///////////////////////////////////////////
+//
+// This function removes completed todos.  First it backs up the array, 
+// then it resets it to an empty array, then it loops through all old todos
+// then it checks to see if each todo is done, if so it is added to the array
+// if not it is removed.  Basically it removes items marked as done.
+////////////////////////////////////////////////////////////////////////////
 
   $scope.removeDone = function() {
     var oldTodos = $scope.todos;
@@ -94,7 +91,7 @@ angular.module('Todo').controller('MainCtrl', function($scope) {
 
 ////////////////    Remove done todo's ////////////////////////////////////////
 //
-// This function will remove todo's
+// This function will remove todo's from pouch
 ///////////////////////////////////////////////////////////////////////////////
 
   $scope.removeTodo = function(todo) {
@@ -117,11 +114,9 @@ angular.module('Todo').controller('MainCtrl', function($scope) {
     return count;
   };
 
- 
-
 //////////////// Update Todo Lists ////////////////////////////////////////////
 //
-// Here the todo lists will be updated.
+// Here the todo lists will be updated to pouch
 ///////////////////////////////////////////////////////////////////////////////
 
   $scope.updateTodo = function(todo) {

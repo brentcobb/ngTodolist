@@ -1,13 +1,13 @@
 <h1>Todo Pouch</h1>
 
-<span> {{remaining()}} of {{todos.length}} remaining</span>
+<span>{{remaining()}} of {{todos.length}} remaining</span>
 
 [<a href="" ng-href="" ng-click="removeDone()">Remove Done</a>]
 
 <ul class="unstyled">
   <li ng-repeat="todo in todos">
     <input type="checkbox" ng-model="todo.done" ng-click"updateTodo(todo)">
-    <span ng-class="{done: todo.done}">{{todo.text}}</span>
+    <span ng-class="done: {todo.done}">{{todo.text}}</span>
   </li>
 </ul>
 
