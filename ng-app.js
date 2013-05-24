@@ -14,6 +14,15 @@ angular.module('Todo', [])
 
 angular.module('Todo')
   .value('$pouch', Pouch('idb://todos'));
+/////////////////// Contact Controller ////////////////////////////////////////
+//
+//  This is where the controller for contacts will be stored.
+///////////////////////////////////////////////////////////////////////////////
+
+
+angular.module('Todo').controller('contactCtrl', function($scope) {
+
+});
 //////////////////    Main Controller  /////////////////////////////////////////
 //
 // This is the main controller
@@ -50,12 +59,18 @@ angular.module('Todo').controller('MainCtrl', function($scope, $pouch) {
 // a uuid, the text of it is set to $scope.todoText, and it is set to not done.
 //  Then pouch comes into play.  It saves newTodo's and gives them and id and rev
 // use in the database.
+//
+//  I have begun changing this into a contact list, this object will change into
+//  the New contact creater eventually.  I have begun testing adding new properties 
+//  to each todo.
 ///////////////////////////////////////////////////////////////////////////////
 
   $scope.addTodo = function() {
     var newTodo = {
       _id: Math.uuid(),
       text: $scope.todoText,
+      name: $scope.todoName,
+      phone: $scope.todoPhone,
       done: false
     };
 
@@ -99,7 +114,7 @@ angular.module('Todo').controller('MainCtrl', function($scope, $pouch) {
     $pouch.remove(todo);
   };
 
-//////////////////    Counts Remaining  /////////////////////////////////////
+/////////////////    Counts Remaining  /////////////////////////////////////
 //
 // This function figures out how many todos are remaining.  It does this by first
 // setting the count to 0, then going through each todo and counting them and
