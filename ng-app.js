@@ -1,10 +1,11 @@
 angular.module('Todo', [])
-  .config(function($routeProvider /*$locationProvider*/ ) {
+  .config(function($routeProvider, $locationProvider ) {
     'use strict'; 
+    $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {controller: 'MainCtrl',templateUrl: '/app/templates/main.html'});
-    //$locationProvider.html5mode(true);
+    
 });
 /////////////// The Pouch Service /////////////////////////////////////////////
 //
@@ -117,7 +118,7 @@ angular.module('Todo').controller('MainCtrl', function($scope, $pouch) {
 //////////////// Update Todo Lists ////////////////////////////////////////////
 //
 // Here the todo lists will be updated to pouch
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
   $scope.updateTodo = function(todo) {
       $pouch.put(todo);
