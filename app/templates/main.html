@@ -1,14 +1,16 @@
 <!-- <h1>Address Book</h1> -->
 
+<p>Search: <input ng-model="query"></p>
+
 <span>{{remaining()}} of {{contacts.length}} remaining</span>
 
 [<a href="" ng-href="" ng-click="removeDone()">Remove Done</a>]
 
 <ul class="unstyled">
-  <li ng-repeat="contact in contacts"class="well well-large">
+  <li ng-repeat="contact in contacts | filter:query" class="well well-large">
     <input type="checkbox" ng-model="contact.done" ng-click="updateContact(contact)">
     <span ng-class="{done: contact.done}">{{contact.name}}  
-      <img type="image/jpeg" src="/components/img/stock1.jpg"/>
+      <img src="components/img/stock1.jpg"/>
       <ul>
         <li> {{contact.job}} </li>
         <li> {{contact.phone}} </li>
