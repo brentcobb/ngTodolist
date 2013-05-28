@@ -1,29 +1,46 @@
 <!-- <h1>Address Book</h1> -->
 
-<span>{{remaining()}} of {{todos.length}} remaining</span>
+<span>{{remaining()}} of {{contacts.length}} remaining</span>
 
 [<a href="" ng-href="" ng-click="removeDone()">Remove Done</a>]
 
 <ul class="unstyled">
-  <li ng-repeat="todo in todos">
-    <input type="checkbox" ng-model="todo.done" ng-click"updateTodo(todo)">
-    <span ng-class="{done: todo.done}">{{todo.text}} , {{todo.name}} , {{todo.phone}}</span>
+  <li ng-repeat="contact in contacts"class="well well-large">
+    <input type="checkbox" ng-model="contact.done" ng-click="updateContact(contact)">
+    <span ng-class="{done: contact.done}">{{contact.name}}  
+      <img type="image/jpeg" src="/components/img/stock1.jpg"/>
+      <ul>
+        <li> {{contact.job}} </li>
+        <li> {{contact.phone}} </li>
+        <li> {{contact.email}} </li>
+        <li> {{contact.address}} </li>
+      </ul>
+    </span>
   </li>
 </ul>
 
+
 <div>
-  <form ng-submit="addTodo()">
+  <form ng-submit="addContact()">
     <table>
       <tr>
         <td>
-          <input type="text" ng-model="todoText" size="30" placeholder="add new todo here" required>
+          <input type="text" ng-model="contactName" size="30" placeholder="Name" required>
         </td>
       <tr>
-        <td><input type="text" ng-model="todoName" size="30" placeholder="add new contact name here">
+        <td><input type="text" ng-model="contactJob" size="30" placeholder="Occupation">
         </td>
       </tr>
       <tr>
-        <td><input type="text" ng-model="todoPhone" size="30" placeholder="add phone number here">
+        <td><input type="text" ng-model="contactPhone" size="30" placeholder="Phone Number">
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" ng-model="contactAddress" size="30" placeholder="Address">
+        </td>
+      </tr>
+      <tr>
+        <td><input type="email" ng-model="contactEmail" size="30" placeholder="Email">
         </td>
       </tr>
     </table>
@@ -33,3 +50,14 @@
   </form>
 
 </div>
+
+
+
+
+<!-- <div ng-controller="CollapseDemoCtrl">
+  <button class="btn" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+  <hr>
+  <div collapse="isCollapsed">
+    <div class="well well-large">Some content</div> 
+  </div>
+</div> -->

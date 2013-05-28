@@ -1,4 +1,4 @@
-angular.module('Todo', [])
+angular.module('Contact', [])
   .config(function($routeProvider, $locationProvider ) {
     'use strict'; 
     $locationProvider.html5Mode(true);
@@ -12,17 +12,21 @@ angular.module('Todo', [])
 // Here is where the pouch service will be stored
 ///////////////////////////////////////////////////////////////////////////////
 
-angular.module('Todo')
-  .value('$pouch', Pouch('idb://todos'));
+angular.module('Contact')
+  .value('$pouch', Pouch('idb://contacts'));
+/*angular.module('plunker', ['ui.bootstrap']);
+function CollapseDemoCtrl($scope) {
+  $scope.isCollapsed = false;
+}*/
 /////////////////// Contact Controller ////////////////////////////////////////
 //
 //  This is where the controller for contacts will be stored.
 ///////////////////////////////////////////////////////////////////////////////
 
 
-angular.module('Todo').controller('contactCtrl', function($scope) {
+/*angular.module('Todo').controller('contactCtrl', function($scope) {
 
-});
+});*/
 //////////////////    Main Controller  /////////////////////////////////////////
 //
 // This is the main controller
@@ -30,119 +34,120 @@ angular.module('Todo').controller('contactCtrl', function($scope) {
 
 
 
-angular.module('Todo').controller('MainCtrl', function($scope, $pouch) {
+angular.module('Contact').controller('MainCtrl', function($scope, $pouch) {
 
 
 
 /////////////////////////////////////
-// Initialize the $scope.todos array
+// Initialize the $scope.contacts array
 /////////////////////////////////////
 
-  $scope.todos = [];
+  $scope.contacts = [];
 
-/////////////////    Loading Todo Lists   /////////////////////////////////////
+/////////////////    Loading contact Lists   /////////////////////////////////////
 //
-//  Here is where saved todo lists will be loaded back into view
+//  Here is where saved contact lists will be loaded back into view
 ///////////////////////////////////////////////////////////////////////////////
 
   $pouch.allDocs({include_docs: true}, function(err, response) {
     $scope.$apply(function() {
       response.rows.forEach(function(row) {
-        $scope.todos.push(row.doc);
+        $scope.contacts.push(row.doc);
       });
     });
   });
 
-////////////////    New Todo Creation /////////////////////////////////////////
+////////////////    New contact Creation /////////////////////////////////////////
 //
-//  The todo function, this will be used to add new todos.  Each newTodo is given
-// a uuid, the text of it is set to $scope.todoText, and it is set to not done.
-//  Then pouch comes into play.  It saves newTodo's and gives them and id and rev
+//  The contact function, this will be used to add new contacts.  Each newcontact is given
+// a uuid, the text of it is set to $scope.contactText, and it is set to not done.
+//  Then pouch comes into play.  It saves newcontact's and gives them and id and rev
 // use in the database.
 //
 //  I have begun changing this into a contact list, this object will change into
 //  the New contact creater eventually.  I have begun testing adding new properties 
-//  to each todo.
+//  to each contact.
 ///////////////////////////////////////////////////////////////////////////////
 
-  $scope.addTodo = function() {
-    var newTodo = {
+  $scope.addContact = function() {
+    var newContact = {
       _id: Math.uuid(),
-      text: $scope.todoText,
-      name: $scope.todoName,
-      phone: $scope.todoPhone,
+      job: $scope.contactJob,
+      name: $scope.contactName,
+      phone: $scope.contactPhone,
+      address: $scope.contactAddress,
+      email: $scope.contactEmail,
       done: false
     };
 
-    $scope.todos.push(newTodo);
+    $scope.contacts.push(newContact);
 
-    $scope.todoText = '';
-    $pouch.post(newTodo, function(err, res) {
+    $scope.contactText = '';
+    $pouch.post(newContact, function(err, res) {
       if (err) { console.log(err); }
-      newTodo._id = res.id;
-      newTodo._rev = res.rev;
+      newContact._id = res.id;
+      newContact._rev = res.rev;
     });
   };
 
 /////////////////    The Remover ///////////////////////////////////////////
+//    
+// 
 //
-// This function removes completed todos.  First it backs up the array, 
-// then it resets it to an empty array, then it loops through all old todos
-// then it checks to see if each todo is done, if so it is added to the array
+// This function removes completed contacts.  First it backs up the array, 
+// then it resets it to an empty array, then it loops through all old contacts
+// then it checks to see if each contact is done, if so it is added to the array
 // if not it is removed.  Basically it removes items marked as done.
 ////////////////////////////////////////////////////////////////////////////
 
   $scope.removeDone = function() {
-    var oldTodos = $scope.todos;
-    $scope.todos = [];
-    angular.forEach(oldTodos, function(todo) {
-      if(!todo.done) {
-        $scope.todos.push(todo);
+    var oldContacts = $scope.contacts;
+    $scope.contacts = [];
+    angular.forEach(oldContacts, function(contact) {
+      if(!contact.done) {
+        $scope.contacts.push(contact);
       }
       else {
-        $scope.removeTodo(todo);
+        $scope.removeContact(contact);
       }
     });
   };
 
-////////////////    Remove done todo's ////////////////////////////////////////
+////////////////    Remove done contact's ////////////////////////////////////////
 //
-// This function will remove todo's from pouch
+// This function will remove contact's from pouch
 ///////////////////////////////////////////////////////////////////////////////
 
-  $scope.removeTodo = function(todo) {
-    $pouch.remove(todo);
+  $scope.removeContact = function(contact) {
+    $pouch.remove(contact);
   };
 
 /////////////////    Counts Remaining  /////////////////////////////////////
 //
-// This function figures out how many todos are remaining.  It does this by first
-// setting the count to 0, then going through each todo and counting them and
+// This function figures out how many Contacts are remaining.  It does this by first
+// setting the count to 0, then going through each contact and counting them and
 // then returns the count.
 //////////////////////////////////////////////////////////////////////////////
 
 
   $scope.remaining = function() {
     var count = 0;
-    angular.forEach($scope.todos, function(todo) {
-      count += todo.done ? 0 : 1;
+    angular.forEach($scope.contacts, function(contact) {
+      count += contact.done ? 0 : 1;
     });
     return count;
   };
 
-//////////////// Update Todo Lists ////////////////////////////////////////////
+//////////////// Update contact Lists ////////////////////////////////////////////
 //
-// Here the todo lists will be updated to pouch
+// Here the contact lists will be updated to pouch
 //////////////////////////////////////////////////////////////////////////////
 
-  $scope.updateTodo = function(todo) {
-      $pouch.put(todo);
+  $scope.updateContact = function(contact) {
+      $pouch.put(contact);
   };
 
-
 });
-
-
 
 
 

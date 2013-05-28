@@ -1,4 +1,4 @@
-angular.module('Todo', [])
+angular.module('Contact', [])
   .config(function($routeProvider, $locationProvider ) {
     'use strict'; 
     $locationProvider.html5Mode(true);

@@ -4,6 +4,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-angular.module('Todo').controller('contactCtrl', function($scope) {
+/*angular.module('Todo').controller('contactCtrl', function($scope) {
 
-});
+});*/

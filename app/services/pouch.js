@@ -3,5 +3,5 @@
 // Here is where the pouch service will be stored
 ///////////////////////////////////////////////////////////////////////////////
 
-angular.module('Todo')
-  .value('$pouch', Pouch('idb://todos'));
+angular.module('Contact')
+  .value('$pouch', Pouch('idb://contacts'));
